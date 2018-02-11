@@ -16,5 +16,6 @@ public class SecondActivity extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         getSwipeBackLayout().setEnabled(true);
+
     }
 }

@@ -2,6 +2,7 @@ package com.zj.transform.activity;
 
 import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import com.zj.transform.view.SwipeBackLayout;
  * Created by zhangjun on 2018/2/11.
  */
 
-public class SwipeBackActivity extends FragmentActivity implements SwipeBackContainer{
+public class SwipeBackActivity extends FragmentActivity implements SwipeBackContainer, SwipeBackInterface{
     private SwipeBackLayout swipeBackLayout;
     private ImageView imgShadow;
     private View view;
@@ -35,10 +36,12 @@ public class SwipeBackActivity extends FragmentActivity implements SwipeBackCont
         RelativeLayout container = new RelativeLayout(this);
         swipeBackLayout = new SwipeBackLayout(this);
         imgShadow = new ImageView(this);
+        imgShadow.setBackgroundColor(Color.BLACK);
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
         container.addView(imgShadow, params);
         container.addView(swipeBackLayout, params);
+        swipeBackLayout.setSwipeBackInterface(this);
         return container;
     }
 
@@ -77,4 +80,10 @@ public class SwipeBackActivity extends FragmentActivity implements SwipeBackCont
     }
 
 
+    @Override
+    public void onSwipeBackProgress(int percent) {
+        if (percent>=0 && percent<=100) {
+            imgShadow.getBackground().setAlpha(100-percent);
+        }
+    }
 }

@@ -3,6 +3,7 @@ package com.zj.transform.view;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.zj.transform.activity.SwipeBackActivity;
+import com.zj.transform.activity.SwipeBackInterface;
 import com.zj.transform.utils.DimenUtils;
 import com.zj.transform.utils.ViewGroupChecker;
 
@@ -37,6 +39,7 @@ public class SwipeBackLayout extends FrameLayout {
 
     private View target;
     private ViewGroupChecker swipeCheckers = new ViewGroupChecker();
+    private SwipeBackInterface swipeBackInterface;
 
     private boolean enabled = false;
 
@@ -58,6 +61,10 @@ public class SwipeBackLayout extends FrameLayout {
     private void init() {
         thresHoldForSwipeBackRegion = getResources().getDisplayMetrics().widthPixels;
         thresHoldForSwipeFinishRegion = getResources().getDisplayMetrics().widthPixels/4;
+    }
+
+    public void setSwipeBackInterface(SwipeBackInterface swipeBackInterface) {
+        this.swipeBackInterface = swipeBackInterface;
     }
 
     public boolean isSwiping() {
@@ -149,6 +156,9 @@ public class SwipeBackLayout extends FrameLayout {
         if (state == STATE_SLIDING && target != null) {
             int dx = Math.max((int) (event.getRawX() - startX), 0);
             target.setTranslationX(dx);
+            if (swipeBackInterface != null) {
+                swipeBackInterface.onSwipeBackProgress(dx*100/getWidth());
+            }
         }
     }
 
@@ -194,6 +204,15 @@ public class SwipeBackLayout extends FrameLayout {
                         }else {
                             activity.finish();
                         }
+                    }
+                }
+            });
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    float dx = (float) animation.getAnimatedValue();
+                    if (swipeBackInterface != null) {
+                        swipeBackInterface.onSwipeBackProgress((int) (dx*100/getWidth()));
                     }
                 }
             });

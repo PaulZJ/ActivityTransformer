@@ -5,5 +5,5 @@ package com.zj.transform.activity;
  */
 
 public interface SwipeBackInterface {
-
+    void onSwipeBackProgress(int percent);
 }
