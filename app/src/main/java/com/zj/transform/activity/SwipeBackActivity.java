@@ -36,7 +36,7 @@ public class SwipeBackActivity extends FragmentActivity implements SwipeBackCont
         RelativeLayout container = new RelativeLayout(this);
         swipeBackLayout = new SwipeBackLayout(this);
         imgShadow = new ImageView(this);
-        imgShadow.setBackgroundColor(Color.BLACK);
+        imgShadow.setBackgroundColor(Color.TRANSPARENT);
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
         container.addView(imgShadow, params);

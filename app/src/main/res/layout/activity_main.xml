@@ -9,4 +9,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next Page"/>
+
+    <View
+        android:id="@+id/rect_view"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="20dp"
+        android:background="#ffdd00"/>
 </LinearLayout>

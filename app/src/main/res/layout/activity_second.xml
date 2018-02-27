@@ -1,8 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#ffdd00">
 
-</LinearLayout>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_detail_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#888888"
+    >
+
+    <ScrollView
+        android:id="@+id/activity_detail_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:id="@+id/item_movie_cover"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:scaleType="centerCrop"
+                android:src="#aabbdd"
+                />
+            <TextView
+                android:id="@+id/activity_detail_title"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:paddingLeft="48dp"
+                android:paddingRight="48dp"
+                android:scaleY="0"
+                android:transformPivotY="0dp"
+                android:layout_below="@id/item_movie_cover"
+                android:gravity="center_vertical"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="28sp"
+                android:textColor="#FFF"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:elevation="4dp"
+                />
+
+            <ImageButton
+                android:id="@+id/activity_detail_fab"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="40dp"
+                android:layout_alignParentRight="true"
+                android:scaleX="0"
+                android:scaleY="0"
+                android:src="#ffdd00"
+                android:layout_below="@id/item_movie_cover"
+                android:elevation="4dp"
+                />
+
+            <LinearLayout
+                android:id="@+id/activity_detail_book_info"
+                android:layout_below="@id/activity_detail_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:scaleY="0"
+                android:background="#77dd99"
+                android:transformPivotY="0dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="30dp"
+                android:paddingTop="30dp"
+                ></LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+
+</FrameLayout>
